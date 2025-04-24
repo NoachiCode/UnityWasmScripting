@@ -19,6 +19,7 @@ namespace WasmScripting {
 		public List<WasmVariable<string>> stringVariables;
 		public List<WasmVariable<Component>> componentVariables;
 		public List<WasmVariable<GameObject>> gameObjectVariables;
+		[SerializeField]
 		internal string BehaviourName;
 		internal int InstanceId;
 		private WasmVM _vm;
@@ -52,8 +53,8 @@ namespace WasmScripting {
 #if UNITY_EDITOR
 	[CustomEditor(typeof(WasmBehaviour))]
 	public class WasmBehaviourInspector : Editor {
-		private const string ProjectRoot = @"C:\Users\Koneko\Documents\CVRProjects\Wasm\Assets";
-		private const string WasmProjectPath = @"C:\Users\Koneko\Documents\CVRProjects\Wasm\Assets\.WasmModule";
+		private const string ProjectRoot = @"E:\Unity\UnityWasmScripting\Assets";
+		private const string WasmProjectPath = @"E:\Unity\UnityWasmScripting\Assets\.WasmModule";
 		private const string BuiltModulePath = @"bin\Release\net9.0\wasi-wasm\publish\WasmModule.wasm";
 		
 		public override void OnInspectorGUI() {
@@ -80,10 +81,10 @@ namespace WasmScripting {
 				Process buildCmd = new Process {
 					StartInfo = new ProcessStartInfo {
 						FileName = @"C:\Windows\System32\cmd.exe",
-						Arguments = $"/c cd \"{WasmProjectPath}\" && build.bat",
-						UseShellExecute = false,
-						RedirectStandardOutput = true,
-						CreateNoWindow = true,
+						Arguments = $"/k cd \"{WasmProjectPath}\" && build.bat",
+						//UseShellExecute = false,
+						//RedirectStandardOutput = true,
+						//CreateNoWindow = true,
 						WorkingDirectory = WasmProjectPath
 					}
 				};

@@ -15,7 +15,7 @@ public static class Program {
         string name = Pop();
         try {
             Type type = Type.GetType(name);
-            MonoBehaviour obj = RuntimeHelpers.GetUninitializedObject(type) as MonoBehaviour;
+            MonoBehaviour obj = Activator.CreateInstance(type!) as MonoBehaviour;
             ObjectIdField.SetValue(obj, objectId);
             Behaviours[id] = obj;
             if (Callbacks.ContainsKey(type)) return;

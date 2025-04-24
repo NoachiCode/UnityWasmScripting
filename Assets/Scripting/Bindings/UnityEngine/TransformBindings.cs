@@ -15,6 +15,19 @@ namespace WasmScripting.UnityEngine {
 				Transform transform = IdTo<Transform>(data, objectId);
 				transform.position = Pop<Vector3>(data);
 			});
+			
+			linker.DefineFunction("unity", "transform_setParent_0", (Caller caller, long objectId, long parentId) => {
+				StoreData data = GetData(caller);
+				Transform transform = IdTo<Transform>(data, objectId);
+				transform.SetParent(IdTo<Transform>(data, parentId));
+			});
+			
+			linker.DefineFunction("unity", "transform_setParent_1", (Caller caller, long objectId, long parentId, bool worldPositionStays) =>
+			{
+				StoreData data = GetData(caller);
+				Transform transform = IdTo<Transform>(data, objectId);
+				transform.SetParent(IdTo<Transform>(data, parentId), worldPositionStays);
+			});
 		}
 	}
 }

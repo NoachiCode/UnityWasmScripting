@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEngine;
 using Wasmtime;
 
 namespace WasmScripting {
