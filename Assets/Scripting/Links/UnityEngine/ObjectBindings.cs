@@ -63,7 +63,9 @@ namespace WasmScripting.UnityEngine
 				(Caller caller, long objectId) =>
 				{
 					StoreData data = GetData(caller);
-					Object.Instantiate(IdToClass<Object>(data, objectId));
+					Object obj = IdToClass<Object>(data, objectId);
+					Object ret = Object.Instantiate(obj);
+					return IdFrom(data, ret);
 				}
 			);
 		}
